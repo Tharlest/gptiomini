@@ -15,6 +15,20 @@ function createRooms(numRooms) {
     }
 }
 
+function updateAdminPanel() {
+    const requestsDiv = document.getElementById('pendingRequests');
+    requestsDiv.innerHTML = '<p>Nenhuma solicitação pendente no momento.</p>';
+    createRooms(9); // Chama a função para criar os quartos
+}
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.title === 'Painel do Administrador') {
+        updateAdminPanel();
+    }
+});
+
+
 function selectRoom(roomNumber) {
     selectedRoom = roomNumber;
     document.getElementById('selectedRoom').textContent = roomNumber;
