@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Administrador</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Painel do Administrador</h1>
+        <div id="adminPanel">
+            <h2>Solicitações Pendentes</h2>
+            <div id="pendingRequests"></div>
+        </div>
+        <div id="roomStatus">
+            <h2>Status dos Quartos</h2>
+            <div id="roomContainer"></div>
+        </div>
+        <div class="button-container">
+            <button onclick="generateReport()">Gerar Relatório</button>
+        </div>
+        <div id="notificationPanel">
+            <h2>Notificações</h2>
+            <ul id="notificationList"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
