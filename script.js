@@ -1,4 +1,5 @@
 let selectedRoom = null;
+let pendingRequests = []; // Array para armazenar solicitações pendentes
 
 function createRooms(numRooms) {
     const container = document.getElementById('roomContainer');
@@ -14,20 +15,6 @@ function createRooms(numRooms) {
         container.appendChild(room);
     }
 }
-
-function updateAdminPanel() {
-    const requestsDiv = document.getElementById('pendingRequests');
-    requestsDiv.innerHTML = '<p>Nenhuma solicitação pendente no momento.</p>';
-    createRooms(9); // Chama a função para criar os quartos
-}
-
-// Inicialização
-document.addEventListener('DOMContentLoaded', function() {
-    if (document.title === 'Painel do Administrador') {
-        updateAdminPanel();
-    }
-});
-
 
 function selectRoom(roomNumber) {
     selectedRoom = roomNumber;
@@ -50,7 +37,28 @@ function requestService(service) {
         checkout: 'Fazer Checkout'
     };
 
-    alert(`Serviço "${serviceNames[service]}" solicitado para o Quarto ${selectedRoom}.`);
+    const request = `Serviço "${serviceNames[service]}" solicitado para o Quarto ${selectedRoom}.`;
+    alert(request);
+    
+    // Adiciona a solicitação à lista de pendências
+    pendingRequests.push(request);
+    updateAdminPanel(); // Atualiza o painel do administrador
+    playNotificationSound(); // Chama a função de notificação sonora
+}
+
+function updateAdminPanel() {
+    const requestsDiv = document.getElementById('pendingRequests');
+    requestsDiv.innerHTML = ''; // Limpa as solicitações pendentes
+    if (pendingRequests.length === 0) {
+        requestsDiv.innerHTML = '<p>Nenhuma solicitação pendente no momento.</p>';
+    } else {
+        pendingRequests.forEach(request => {
+            const requestItem = document.createElement('div');
+            requestItem.textContent = request;
+            requestsDiv.appendChild(requestItem);
+        });
+    }
+    createRooms(9); // Chama a função para criar os quartos
 }
 
 function openConcierge() {
@@ -61,10 +69,16 @@ function openChat() {
     window.location.href = 'chat.html';
 }
 
+function playNotificationSound() {
+    const audio = new Audio('notification.mp3'); // Certifique-se de que o arquivo notification.mp3 está na raiz do repositório
+    audio.play();
+}
+
 // Inicialização
 document.addEventListener('DOMContentLoaded', function() {
     if (document.title === 'Área do Hóspede') {
         createRooms(9);
+    } else if (document.title === 'Painel do Administrador') {
+        updateAdminPanel();
     }
 });
-
