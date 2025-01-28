@@ -71,7 +71,9 @@ function openChat() {
 
 function playNotificationSound() {
     const audio = new Audio('notification.mp3'); // Certifique-se de que o arquivo notification.mp3 está na raiz do repositório
-    audio.play();
+    audio.play().catch(error => {
+        console.error("Erro ao reproduzir o som:", error);
+    });
 }
 
 // Inicialização
