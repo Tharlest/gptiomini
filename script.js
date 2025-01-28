@@ -19,7 +19,6 @@ function selectRoom(roomNumber) {
     selectedRoom = roomNumber;
     document.getElementById('selectedRoom').textContent = roomNumber;
     document.getElementById('servicePanel').style.display = 'block';
-    playNotificationSound(); // Chama a função de notificação sonora
 }
 
 function requestService(service) {
@@ -38,7 +37,6 @@ function requestService(service) {
     };
 
     alert(`Serviço "${serviceNames[service]}" solicitado para o Quarto ${selectedRoom}.`);
-    playNotificationSound(); // Chama a função de notificação sonora
 }
 
 function openConcierge() {
@@ -49,17 +47,10 @@ function openChat() {
     window.location.href = 'chat.html';
 }
 
-function playNotificationSound() {
-    const audio = new Audio('notification.mp3'); // Certifique-se de que o arquivo notification.mp3 está na raiz do repositório
-    audio.play();
-}
-
 // Inicialização
 document.addEventListener('DOMContentLoaded', function() {
     if (document.title === 'Área do Hóspede') {
         createRooms(9);
-    } else if (document.title === 'Painel do Administrador') {
-        updateAdminPanel();
-        createRooms(9);
     }
 });
+
