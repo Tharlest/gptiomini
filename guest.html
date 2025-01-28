@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Hóspede</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Bem-vindo, Hóspede!</h1>
+        <div id="roomContainer"></div>
+        <div id="servicePanel" style="display: none;">
+            <h2>Serviços para Quarto <span id="selectedRoom"></span></h2>
+            <button onclick="requestService('toalha')">Pedir Toalha</button>
+            <button onclick="requestService('quarto')">Serviço de Quarto</button>
+            <button onclick="requestService('manutencao')">Pedir Manutenção</button>
+            <button onclick="requestService('ar')">Problemas com Ar-condicionado</button>
+            <button onclick="requestService('camareira')">Solicitar Camareira</button>
+            <button onclick="requestService('checkout')">Fazer Checkout</button>
+        </div>
+        <div class="button-container">
+            <button onclick="openConcierge()">CONCIERGE</button>
+            <button onclick="openChat()">Chat com a Recepção</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
